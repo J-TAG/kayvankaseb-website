@@ -36,6 +36,10 @@ module.exports = {
           title: `Instagram`,
           href: `https://www.instagram.com/kayvan_journey_of_life/`,
         },
+        {
+          title: `LinkedIn`,
+          href: `https://www.linkedin.com/in/kayvan-kaseb/`,
+        },
 
         ],
         showThemeAuthor: false,
