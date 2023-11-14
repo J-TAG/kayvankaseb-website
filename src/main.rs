@@ -1,6 +1,6 @@
 use clap::Parser;
 use serde::Deserialize;
-use std::fs;
+use std::{fs, process};
 
 /// Reckless CI command line tool
 #[derive(Parser, Debug)]
@@ -41,8 +41,8 @@ fn main() {
     if args.generate_local_hooks {
         match config.pre_commit {
             None => {
-                println!("No `pre_commit` is set in reckless.toml");
-                return;
+                eprintln!("No `pre_commit` is set in reckless.toml");
+                process::exit(1);
             }
             Some(pre_commits) => {
                 let mut data = "#!/bin/sh\nexec 1>&2\n".to_string();
@@ -59,4 +59,8 @@ fn main() {
             }
         }
     }
+}
+
+fn read_config() -> String {
+    return fs::read_to_string("./reckless.toml").expect("Unable to read config file");
 }
